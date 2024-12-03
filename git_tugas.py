@@ -40,3 +40,42 @@ data_panen = {
         }
     }
 }
+
+# Menampilkan seluruh data
+for lokasi, data in data_panen.items():
+    print(f"Nama Lokasi: {data['nama_lokasi']}")
+    print("Hasil Panen:")
+    for komoditas, jumlah in data['hasil_panen'].items():
+        print(f"  {komoditas.capitalize()}: {jumlah}")
+    print()
+
+# Menampilkan jumlah hasil panen jagung dari lokasi2
+hasil_jagung_lokasi2 = data_panen['lokasi2']['hasil_panen']['jagung']
+print(f"Jumlah hasil panen jagung dari lokasi2: {hasil_jagung_lokasi2}")
+
+# Tampilkan nama lokasi dari lokasi3
+nama_lokasi3 = data_panen['lokasi3']['nama_lokasi']
+print(f"Nama lokasi dari lokasi3: {nama_lokasi3}\n")
+
+# Masukkan jumlah hasil panen padi dan kedelai ke dalam variabel yang berbeda
+hasil_padi = {}
+hasil_kedelai = {}
+
+for lokasi, data in data_panen.items():
+    hasil_padi[lokasi] = data['hasil_panen']['padi']
+    hasil_kedelai[lokasi] = data['hasil_panen']['kedelai']
+
+print("Jumlah hasil panen padi per lokasi:", hasil_padi)
+print("Jumlah hasil panen kedelai per lokasi:", hasil_kedelai, "\n")
+
+# Percabangan untuk mengecek lokasi yang memerlukan perhatian khusus
+print("Status Lokasi:")
+for lokasi, data in data_panen.items():
+    padi = data['hasil_panen']['padi']
+    jagung = data['hasil_panen']['jagung']
+    nama = data['nama_lokasi']
+    
+    if padi > 1300 or jagung > 800:
+        print(f"Lokasi {nama} memerlukan perhatian khusus.")
+    else:
+        print(f"Lokasi {nama} dalam kondisi baik.")
